@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo PI;
+    public string myPlayerName;
     public int mySelectedWeapon;
     public GameObject[] allWeapons;
 

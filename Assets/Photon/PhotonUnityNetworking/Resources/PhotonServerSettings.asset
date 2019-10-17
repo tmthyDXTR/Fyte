@@ -43,5 +43,11 @@ MonoBehaviour:
   - GetComponents
   - ApplyAttack
   - SetPlayerName
+  - GetHit
+  - ActivateParry
+  - ResetHitBox
+  - RPC_ChangeObjName
+  - SetWeaponActive
+  - RPC_GetHit
   DisableAutoOpenWizard: 1
   ShowSettings: 1

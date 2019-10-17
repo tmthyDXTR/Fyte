@@ -1,6 +1,4 @@
 ﻿using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ public class PhotonPlayer : MonoBehaviour
     void Start()
     {
         PV = GetComponent<PhotonView>();
-        if(PV.IsMine)
+        if (PV.IsMine)
         {
             // First player spawns at left spawn point
             int spawn;
@@ -20,14 +18,14 @@ public class PhotonPlayer : MonoBehaviour
             {
                 spawn = 0;
                 CreateAvatar(spawn);
-                PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player1");
+                //PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player1");
             }
             // Secondd player at right spawn point
             else
             {
                 spawn = 1;
                 CreateAvatar(spawn);
-                PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player2");
+                //PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player2");
             }
 
 
@@ -42,11 +40,11 @@ public class PhotonPlayer : MonoBehaviour
             //myAvatar.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5).GetComponent<WeaponInfo>().enabled = true;
         }
     }
-    [PunRPC]
-    void SetPlayerName(string name)
-    {        
-        myAvatar.name = name;        
-    }
+    //[PunRPC]
+    //void SetPlayerName(string name)
+    //{        
+    //    myAvatar.name = name;        
+    //}
 
     private void CreateAvatar(int spawn)
     {

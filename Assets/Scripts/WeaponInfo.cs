@@ -5,14 +5,18 @@ using UnityEngine;
 public class WeaponInfo : MonoBehaviour
 {
     public Weapon weapon;
-    public Transform weaponCarrier;
+    public Transform weaponOwner;
+
+    public int damage;
+    public float attackSpeed;
     void OnEnable()
     {
-        weaponCarrier = this.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent;
+        weaponOwner = this.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent;
     }
 
-    void Update()
+    void Start()
     {
-        
+        damage = weapon.damage;
+        attackSpeed = weapon.attackSpeed;
     }
 }

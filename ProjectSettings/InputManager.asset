@@ -38,7 +38,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1_AttackFast
+    m_Name: P1_Attack1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -86,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: P1_JumpBack
+    m_Name: P1_Jump
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

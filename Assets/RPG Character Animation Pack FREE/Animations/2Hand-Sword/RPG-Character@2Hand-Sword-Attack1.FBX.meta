@@ -772,22 +772,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.86129034
-        functionName: EndAttackFast
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.3118971
-        functionName: EnduranceRemove
+        functionName: Attack1StartFrame
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4416404
-        functionName: EndAttackFrame
+      - time: 0.4936206
+        functionName: Attack1EndFrame
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.86129034
+        functionName: Attack1End
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

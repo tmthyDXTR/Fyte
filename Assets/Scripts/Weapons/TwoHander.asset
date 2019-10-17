@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f164d2025b19344e8fa9fbffb91d6f5, type: 3}
   m_Name: TwoHander
   m_EditorClassIdentifier: 
-  weaponName: TwoHander
+  name: TwiHander
   damage: 2
+  attackSpeed: 1
