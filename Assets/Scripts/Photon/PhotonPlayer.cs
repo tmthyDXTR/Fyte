@@ -7,6 +7,7 @@ public class PhotonPlayer : MonoBehaviour
     private PhotonView PV;
     public GameObject myAvatar;
 
+
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -19,6 +20,7 @@ public class PhotonPlayer : MonoBehaviour
                 spawn = 0;
                 CreateAvatar(spawn);
                 //PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player1");
+
             }
             // Secondd player at right spawn point
             else
@@ -27,8 +29,6 @@ public class PhotonPlayer : MonoBehaviour
                 CreateAvatar(spawn);
                 //PV.RPC("SetPlayerName", RpcTarget.AllBuffered, "Player2");
             }
-
-
             //myAvatar.GetComponent<InputHandler>().enabled = true;
             //myAvatar.GetComponent<PlayerController>().enabled = true;
             //myAvatar.transform.GetChild(0).GetComponent<Animator>().enabled = true;
@@ -46,11 +46,16 @@ public class PhotonPlayer : MonoBehaviour
     //    myAvatar.name = name;        
     //}
 
+
+
+
     private void CreateAvatar(int spawn)
     {
         myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerAvatar"),
                         GameSetup.GS.spawnPoints[spawn].position,
                         GameSetup.GS.spawnPoints[spawn].rotation,
                         0);
+        myAvatar.name = "myAvatar";
     }
+
 }

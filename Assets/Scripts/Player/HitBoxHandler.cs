@@ -7,12 +7,13 @@ public class HitBoxHandler : MonoBehaviour
 {
     [SerializeField] private PhotonView PV;
     private PlayerHitBox PHB;
-
+    public CapsuleCollider hitBox;
     public bool isBusy = false;
 
     void Start()
     {
         PHB = PV.transform.GetComponent<PlayerHitBox>();
+        hitBox = GetComponent<CapsuleCollider>();
     }
 
     private void OnTriggerEnter(Collider other)

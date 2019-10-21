@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2111124370015002974}
   - component: {fileID: 2111124370015002973}
+  - component: {fileID: 1019827181302868499}
   m_Layer: 2
   m_Name: ParryBox
   m_TagString: Untagged
@@ -45,6 +46,21 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1019827181302868499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111124370015002975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fde27046885859498ba5e684665a76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PV: {fileID: 1043698283734930796}
+  parryBoxCol: {fileID: 2111124370015002973}
+  isBusy: 0
 --- !u!1 &2111124370376840775
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 1043698283734930796}
+  hitBox: {fileID: 0}
   isBusy: 0
 --- !u!1 &6050008246484192698
 GameObject:
@@ -327,6 +344,8 @@ GameObject:
   - component: {fileID: 7840438203747678766}
   - component: {fileID: 2331238248720507384}
   - component: {fileID: 1457965919535609702}
+  - component: {fileID: 58126636822814615}
+  - component: {fileID: 4201872939919145332}
   m_Layer: 0
   m_Name: 2HanderDude
   m_TagString: Player
@@ -366,7 +385,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 84
   m_CollisionDetection: 1
 --- !u!136 &1803663647385501341
 CapsuleCollider:
@@ -453,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
+  m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &7803812431605052298
@@ -477,6 +496,18 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: IsAttacking
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsHit
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsParrying
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsJumping
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsDead
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
@@ -492,13 +523,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f8813a04f968249a9b313504ce482e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnim: {fileID: 0}
+  myStatPanel: {fileID: 0}
+  enemyStatPanel: {fileID: 0}
   healthMax: 0
   health: 0
+  staminaMax: 0
+  stamina: 0
+  staminaPerTick: 1
+  staminaTickTime: 2
   canRun: 1
-  isRunning: 0
   canAttack: 1
+  canParry: 1
+  canJump: 1
+  isRunning: 0
   isAttacking: 0
+  isParrying: 0
+  isJumping: 0
   isHit: 0
+  isRegenStamina: 0
+  isDead: 0
+  enemyFound: 0
+  enemy: {fileID: 0}
   initialized: 0
 --- !u!114 &7840438203747678766
 MonoBehaviour:
@@ -512,12 +558,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd4ee31caa419b4b8c3575b4428b120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 5
+  rotationSpeed: 15
+  jumpSpeed: 25
   hasMovementInput: 0
   currentVelocity: 0
-  vector: {x: 0, y: 0}
+  input: {x: 0, y: 0}
   jump: 0
-  parry: 0
+  Angle: 0
   drawDebugLine: 1
 --- !u!114 &2331238248720507384
 MonoBehaviour:
@@ -548,6 +596,37 @@ MonoBehaviour:
   hitBox: {fileID: 7648639180285254122}
   PH: {fileID: 0}
   hitting: {fileID: 0}
+--- !u!114 &58126636822814615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202188595701290418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d826fabc36f2d5748bf42f9c987a1dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryBox: {fileID: 1019827181302868499}
+  PH: {fileID: 7981014383290564560}
+  parry: 0
+  hitting: {fileID: 0}
+--- !u!114 &4201872939919145332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202188595701290418}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a895f7bf088d8404d8c7cf6e520aebae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 0
+  pause: 2.5
+  target: {fileID: 0}
 --- !u!1 &8202188595701293390
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,14 +941,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8202188595701302996}
-  m_LocalRotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8202188595701631996}
   m_Father: {fileID: 8202188595701647762}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!1 &8202188595701303404
 GameObject:
   m_ObjectHideFlags: 0
